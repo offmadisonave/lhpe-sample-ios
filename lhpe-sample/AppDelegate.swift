@@ -8,6 +8,7 @@
 
 import UIKit
 import LighthouseKit
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDelegate {
@@ -31,25 +32,72 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
-        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-        // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
+        print("applicationWillResignActive")
+        Lighthouse.applicationWillResignActive()
     }
-
+    
     func applicationDidEnterBackground(_ application: UIApplication) {
-        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        print("applicationDidEnterBackground")
+        Lighthouse.applicationDidEnterBackground()
     }
-
+    
     func applicationWillEnterForeground(_ application: UIApplication) {
-        // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
+        print("applicationWillEnterForeground")
+        Lighthouse.applicationWillEnterForeground()
     }
-
+    
     func applicationDidBecomeActive(_ application: UIApplication) {
-        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        print("applicationDidBecomeActive")
+        Lighthouse.applicationDidBecomeActive()
     }
-
+    
     func applicationWillTerminate(_ application: UIApplication) {
-        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        print("applicationWillTerminate")
+        Lighthouse.applicationWillTerminate()
+    }
+    
+    // MARK: - Notifications
+    
+    func application(_ application: UIApplication, didRegister notificationSettings: UIUserNotificationSettings) {
+        print("didRegister notificationSettings")
+        
+        if #available(iOS 10.0, *){
+            let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+            UNUserNotificationCenter.current().requestAuthorization(options: authOptions, completionHandler: {_, _ in })
+            
+        }else{
+            let settings: UIUserNotificationSettings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+            application.registerUserNotificationSettings(settings)
+            
+        }
+        
+        application.registerForRemoteNotifications()
+        
+    }
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        print("didRegisterForRemoteNotificationsWithDeviceToken")
+        let token = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
+        print(token)
+        Lighthouse.setDeviceTokenFrom(deviceToken)
+    }
+    
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        print("application:didFailToRegisterForRemoteNotificationsWithError: %@", error)
+    }
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
+        print("didReceiveRemoteNotification")
+        
+        if ( application.applicationState == UIApplicationState.inactive || application.applicationState == UIApplicationState.background  ){
+            handleNotification(notification: userInfo)
+        }
+    }
+    
+    func handleNotification(notification: [AnyHashable: Any]){
+        
+        print(notification)
+        
     }
 
     // MARK: - Split view
@@ -66,3 +114,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 
 }
 
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    
+    @available(iOS 10.0, *)
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void)
+    {
+        completionHandler([.alert, .badge, .sound])
+    }
+    
+}
