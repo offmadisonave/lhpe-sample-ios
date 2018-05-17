@@ -7,19 +7,17 @@
 //
 
 import UIKit
+import LighthouseKit
+import SafariServices
 
-class DetailViewController: UIViewController {
+class DetailViewController: UIViewController, UIWebViewDelegate {
 
-    @IBOutlet weak var detailDescriptionLabel: UILabel!
+    @IBOutlet weak var webView: UIWebView!
 
 
     func configureView() {
         // Update the user interface for the detail item.
-        if let detail = detailItem {
-            if let label = detailDescriptionLabel {
-                label.text = detail.description
-            }
-        }
+        
     }
 
     override func viewDidLoad() {
@@ -27,17 +25,37 @@ class DetailViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         configureView()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let signal = signalItem {
+            let urlReq = Lighthouse.urlRequest(forSignalId: signal.id)
+            self.webView.loadRequest(urlReq!)
+        }
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 
-    var detailItem: NSDate? {
+    var signalItem: LHSignal? {
         didSet {
             // Update the view.
             configureView()
         }
+    }
+    
+    // MARK: UIWebViewDelegate
+    
+    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+        let urlReq = Lighthouse.urlRequest(forSignalId: signalItem?.id)
+        if(urlReq?.url?.absoluteString == request.url?.absoluteString){
+            return true
+        }
+        let svc = SFSafariViewController(url: request.url!)
+        self.present(svc, animated: true, completion: nil)
+        return false
     }
 
 

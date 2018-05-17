@@ -6,5 +6,7 @@ target 'lhpe-sample' do
   use_frameworks!
 
   # Pods for lhpe-sample
+  pod 'Permission/Notifications'
+  pod 'Permission/Location'
 
 end

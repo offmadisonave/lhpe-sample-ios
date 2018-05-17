@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		8082852D10140F89D7F472BA /* Pods_lhpe_sample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E6E39BD95886C9D4971F4FD /* Pods_lhpe_sample.framework */; };
+		C3575BFB20ADFC4D00776D7F /* LighthouseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3575BF920ADFC3A00776D7F /* LighthouseKit.framework */; };
+		C3575BFC20ADFC4D00776D7F /* LighthouseKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C3575BF920ADFC3A00776D7F /* LighthouseKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C3575C0120AE0D7C00776D7F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3575C0020AE0D7C00776D7F /* ProfileViewController.swift */; };
 		C3B5F30D20ADF90E00EA3897 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B5F30C20ADF90E00EA3897 /* AppDelegate.swift */; };
 		C3B5F30F20ADF90E00EA3897 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B5F30E20ADF90E00EA3897 /* MasterViewController.swift */; };
 		C3B5F31120ADF90E00EA3897 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B5F31020ADF90E00EA3897 /* DetailViewController.swift */; };
@@ -16,10 +19,27 @@
 		C3B5F31920ADF91100EA3897 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3B5F31720ADF91100EA3897 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		C3575BFD20ADFC4D00776D7F /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				C3575BFC20ADFC4D00776D7F /* LighthouseKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		0C365293F868CD4008D28307 /* Pods-lhpe-sample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lhpe-sample.release.xcconfig"; path = "Pods/Target Support Files/Pods-lhpe-sample/Pods-lhpe-sample.release.xcconfig"; sourceTree = "<group>"; };
 		0E6E39BD95886C9D4971F4FD /* Pods_lhpe_sample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_lhpe_sample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C10AA29CF60D59ED9FD5FB3F /* Pods-lhpe-sample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lhpe-sample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-lhpe-sample/Pods-lhpe-sample.debug.xcconfig"; sourceTree = "<group>"; };
+		C3575BF920ADFC3A00776D7F /* LighthouseKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = LighthouseKit.framework; sourceTree = "<group>"; };
+		C3575BFF20ADFCC800776D7F /* lhpe-sample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "lhpe-sample.entitlements"; sourceTree = "<group>"; };
+		C3575C0020AE0D7C00776D7F /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		C3B5F30920ADF90E00EA3897 /* lhpe-sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "lhpe-sample.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3B5F30C20ADF90E00EA3897 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C3B5F30E20ADF90E00EA3897 /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
@@ -36,6 +56,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8082852D10140F89D7F472BA /* Pods_lhpe_sample.framework in Frameworks */,
+				C3575BFB20ADFC4D00776D7F /* LighthouseKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -45,6 +66,7 @@
 		7699AB318DFA12ABB45B196A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C3575BF920ADFC3A00776D7F /* LighthouseKit.framework */,
 				0E6E39BD95886C9D4971F4FD /* Pods_lhpe_sample.framework */,
 			);
 			name = Frameworks;
@@ -71,9 +93,11 @@
 		C3B5F30B20ADF90E00EA3897 /* lhpe-sample */ = {
 			isa = PBXGroup;
 			children = (
+				C3575BFF20ADFCC800776D7F /* lhpe-sample.entitlements */,
 				C3B5F30C20ADF90E00EA3897 /* AppDelegate.swift */,
 				C3B5F30E20ADF90E00EA3897 /* MasterViewController.swift */,
 				C3B5F31020ADF90E00EA3897 /* DetailViewController.swift */,
+				C3575C0020AE0D7C00776D7F /* ProfileViewController.swift */,
 				C3B5F31220ADF90E00EA3897 /* Main.storyboard */,
 				C3B5F31520ADF91100EA3897 /* Assets.xcassets */,
 				C3B5F31720ADF91100EA3897 /* LaunchScreen.storyboard */,
@@ -102,6 +126,8 @@
 				C3B5F30520ADF90E00EA3897 /* Sources */,
 				C3B5F30620ADF90E00EA3897 /* Frameworks */,
 				C3B5F30720ADF90E00EA3897 /* Resources */,
+				C3575BFD20ADFC4D00776D7F /* Embed Frameworks */,
+				60AC9D1BBDA74ED967C09A95 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -124,6 +150,14 @@
 				TargetAttributes = {
 					C3B5F30820ADF90E00EA3897 = {
 						CreatedOnToolsVersion = 9.3.1;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -177,6 +211,24 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		60AC9D1BBDA74ED967C09A95 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-lhpe-sample/Pods-lhpe-sample-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Permission/Permission.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Permission.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-lhpe-sample/Pods-lhpe-sample-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -184,6 +236,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3575C0120AE0D7C00776D7F /* ProfileViewController.swift in Sources */,
 				C3B5F31120ADF90E00EA3897 /* DetailViewController.swift in Sources */,
 				C3B5F30F20ADF90E00EA3897 /* MasterViewController.swift in Sources */,
 				C3B5F30D20ADF90E00EA3897 /* AppDelegate.swift in Sources */,
@@ -331,8 +384,14 @@
 			baseConfigurationReference = C10AA29CF60D59ED9FD5FB3F /* Pods-lhpe-sample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "lhpe-sample/lhpe-sample.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5K3WVV4RQH;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "lhpe-sample/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -350,8 +409,14 @@
 			baseConfigurationReference = 0C365293F868CD4008D28307 /* Pods-lhpe-sample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "lhpe-sample/lhpe-sample.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5K3WVV4RQH;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "lhpe-sample/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

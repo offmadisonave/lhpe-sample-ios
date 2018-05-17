@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import LighthouseKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDelegate {
@@ -15,6 +16,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
+        Lighthouse.setApplicationId("242e3c08-0f5a-41ce-9c9a-944b809e44a7", clientKey: "54fb85f2-80d1-4451-af2a-396287e2e9e2", environment: LHEnvironmentStaging) {
+            (Bool, err: Error?) in
+            print("Lighthouse Ready")
+        }
+        
         // Override point for customization after application launch.
         let splitViewController = window!.rootViewController as! UISplitViewController
         let navigationController = splitViewController.viewControllers[splitViewController.viewControllers.count-1] as! UINavigationController
@@ -50,7 +57,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController:UIViewController, onto primaryViewController:UIViewController) -> Bool {
         guard let secondaryAsNavController = secondaryViewController as? UINavigationController else { return false }
         guard let topAsDetailController = secondaryAsNavController.topViewController as? DetailViewController else { return false }
-        if topAsDetailController.detailItem == nil {
+        if topAsDetailController.signalItem == nil {
             // Return true to indicate that we have handled the collapse by doing nothing; the secondary controller will be discarded.
             return true
         }
